@@ -7,7 +7,6 @@ SETUP_KIBANA="true"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/../common-vars.sh
 source $SCRIPT_DIR/../util-scripts/vm-util.sh
-
 sudo bash -c "$(declare -f updateHostFileForCurrentIP); updateHostFileForCurrentIP ${MACHINE_ALIAS}"
 
 

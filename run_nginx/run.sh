@@ -6,8 +6,6 @@ REGENERATE_CERTS="true"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/../common-vars.sh
 source $SCRIPT_DIR/../util-scripts/vm-util.sh
-
-echo 'MACHINE_ALIAS='$MACHINE_ALIAS
 sudo bash -c "$(declare -f updateHostFileForCurrentIP); updateHostFileForCurrentIP ${MACHINE_ALIAS}"
 
 

@@ -2,6 +2,9 @@
 
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $SCRIPT_DIR/../common-vars.sh
+source $SCRIPT_DIR/../util-scripts/vm-util.sh
+sudo bash -c "$(declare -f updateHostFileForCurrentIP); updateHostFileForCurrentIP ${MACHINE_ALIAS}"
 
 echo 'Starting Debezium process....'
 
@@ -23,7 +26,7 @@ IP_ADDR=$(ifconfig | grep -A 3 'en0' | grep inet | grep netmask | awk '{print $2
 echo 'IP_ADDRESS = '${IP_ADDR}
 
 docker run --rm --name debezium -d -p 8083:8083 \
-    --add-host="vm-sachin:${IP_ADDR}" \
+    --add-host="${MACHINE_ALIAS}:${IP_ADDR}" \
     -h debezium \
     -e GROUP_ID=g1 \
     -e CONFIG_STORAGE_TOPIC=my_connect_configs \
