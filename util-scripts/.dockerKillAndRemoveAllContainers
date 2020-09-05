@@ -1,0 +1,4 @@
+docker kill $(docker ps -q)
+docker rm $(docker ps -aq)
+
+echo -e "Y" | docker system prune; echo -e "Y" | docker volume prune

@@ -1,0 +1,98 @@
+
+
+KAFKA_MC_IP_ADDR=$(.myIP) && echo 'KAFKA_MC_IP_ADDR='$KAFKA_MC_IP_ADDR
+
+BROKER_LIST=${KAFKA_MC_IP_ADDR}:9092,${KAFKA_MC_IP_ADDR}:9093,${KAFKA_MC_IP_ADDR}:9094
+ZK_LIST=${KAFKA_MC_IP_ADDR}:2181
+KAFKA_HOME=~/softwares/kafka
+
+
+
+#-----
+
+CreateTopic:
+-------------
+
+TOPIC=test-topic-1 &&  ${KAFKA_HOME}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --partitions 1  --replication-factor 1 --topic $TOPIC
+
+TOPIC=test-topic-2 &&  ${KAFKA_HOME}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --partitions 3  --replication-factor 1 --topic $TOPIC
+
+
+ListTopics:
+-------------
+${KAFKA_HOME}/bin/kafka-topics.sh --list --zookeeper ${ZK_LIST}
+
+
+
+DescribeTopic:
+-------------
+TOPIC=test-topic-1 && ${KAFKA_HOME}/bin/kafka-topics.sh --describe --zookeeper ${ZK_LIST} --topic $TOPIC
+TOPIC=test-topic-2 && ${KAFKA_HOME}/bin/kafka-topics.sh --describe --zookeeper ${ZK_LIST} --topic $TOPIC
+
+
+ProdcueMessages:
+-------------
+TOPIC=test-topic-1 && ${KAFKA_HOME}/bin/kafka-console-producer.sh --broker-list ${BROKER_LIST} --topic $TOPIC
+TOPIC=test-topic-2 && ${KAFKA_HOME}/bin/kafka-console-producer.sh --broker-list ${BROKER_LIST} --topic $TOPIC
+
+
+
+ConsumeMessages:
+-------------
+TOPIC=test-topic-1 && \
+    ${KAFKA_HOME}/bin/kafka-console-consumer.sh --bootstrap-server ${BROKER_LIST} --topic $TOPIC  --from-beginning
+
+TOPIC=test-topic-2 && \
+    ${KAFKA_HOME}/bin/kafka-console-consumer.sh --bootstrap-server ${BROKER_LIST} --topic $TOPIC  --from-beginning
+
+
+
+${KAFKA_HOME}/bin/kafka-consumer-groups.sh --bootstrap-server ${BROKER_LIST} --describe --all-groups
+
+
+TOPIC=test-topic-2 && \
+  ${KAFKA_HOME}/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list ${BROKER_LIST} --topic $TOPIC
+
+
+${KAFKA_HOME}/bin/kafka-consumer-groups.sh  --list --bootstrap-server ${BROKER_LIST}
+
+
+
+GROUP_NAME=console-consumer-22429 && \
+  ${KAFKA_HOME}/bin/kafka-consumer-groups.sh --bootstrap-server ${BROKER_LIST} --group ${GROUP_NAME} --describe
+
+
+####
+for t in `${KAFKA_HOME}/bin/kafka-consumer-groups.sh --bootstrap-server ${BROKER_LIST} --list 2>/dev/null`; do
+    echo $t | xargs -I {} sh -c "${KAFKA_HOME}/bin/kafka-consumer-groups.sh --bootstrap-server ${BROKER_LIST} --describe --group {} 2>/dev/null | grep ^{} | awk '{print \$2\"\t\"\$1}' "
+done  > topic-consumer.txt
+cat topic-consumer.txt | sort -u
+
+
+
+GROUP_NAME=dev2-account-g2 && TOPIC=dev2.product \
+  ${KAFKA_HOME}/bin/kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --group ${GROUP_NAME}  --zkconnect ZK_LIST --topic $TOPIC
+
+
+
+
+
+################################################################################
+## If Kafka is not available in local machine, below commands can be used to run kafka as client in docker container.
+Pass the correct host machine IP though.
+################################################################################
+
+docker run --rm -it --add-host="vm-sachin-mac:192.168.1.81" wurstmeister/kafka bash
+KAFKA_MC_IP_ADDR=192.168.1.81
+BROKER_LIST=${KAFKA_MC_IP_ADDR}:9092,${KAFKA_MC_IP_ADDR}:9093,${KAFKA_MC_IP_ADDR}:9094
+ZK_LIST=${KAFKA_MC_IP_ADDR}:2181
+KAFKA_HOME=/opt/kafka/
+TOPIC=test-topic-1 && ${KAFKA_HOME}/bin/kafka-console-producer.sh --broker-list ${BROKER_LIST} --topic $TOPIC
+
+docker run --rm -it --add-host="vm-sachin-mac:192.168.1.81" wurstmeister/kafka bash
+KAFKA_MC_IP_ADDR=192.168.1.81
+BROKER_LIST=${KAFKA_MC_IP_ADDR}:9092,${KAFKA_MC_IP_ADDR}:9093,${KAFKA_MC_IP_ADDR}:9094
+ZK_LIST=${KAFKA_MC_IP_ADDR}:2181
+KAFKA_HOME=/opt/kafka/
+TOPIC=test-topic-1 && \
+    ${KAFKA_HOME}/bin/kafka-console-consumer.sh --bootstr

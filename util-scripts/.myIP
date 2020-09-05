@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo $(ifconfig | grep -A 3 'en0' | grep inet | grep netmask | awk '{print $2}')

@@ -1,0 +1,22 @@
+
+
+curl -H "Accept:application/json" http://localhost:8083/connectors/
+
+curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" http://localhost:8083/connectors/ -d @/Users/sachin/work/ws_sachin/SachinWork/sachin/connectors/test.json
+
+curl -i -X GET -H "Accept:application/json" http://localhost:8083/connectors/test-connector
+
+
+
+
+
+
+
+docker exec -it $CONTAINER_KAFKA /opt/kafka/bin/kafka-topics.sh --list --zookeeper zookeeper:2181
+
+
+TOPIC=my_connect_configs
+docker exec -it $CONTAINER_KAFKA /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic $TOPIC --from-beginning
+
+
+
