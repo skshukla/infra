@@ -1,0 +1,1 @@
+Running the *run_kafka.sh* shell script file would bring up 3 node kafka cluster and one zookeeper. It internally creates some variations of topics too. Finally there are some useful commands echoed which would help developer to test the cluster. specially console producer and consumer command can be hit in two different shells and message can be produced/consumed.
