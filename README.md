@@ -7,3 +7,4 @@ Checkout and execute the top level shell script to bring up and follow logs how 
 - Any component would produce the log for output. Look that for further details
 
     
+##### https://youtu.be/P891O2Cj9Ms
