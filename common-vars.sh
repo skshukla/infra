@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-export MACHINE_ALIAS=sachin-local-machine.com
+export MACHINE_ALIAS=my-local-machine.com

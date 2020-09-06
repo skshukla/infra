@@ -15,13 +15,13 @@ function createSampleRecords() {
     KAFKA_MC_IP_ADDR=$(${SCRIPT_DIR}/../util-scripts/.myIP) && echo 'KAFKA_MC_IP_ADDR='$KAFKA_MC_IP_ADDR
     BROKER_LIST=${KAFKA_MC_IP_ADDR}:9092,${KAFKA_MC_IP_ADDR}:9093,${KAFKA_MC_IP_ADDR}:9094
     ZK_LIST=${KAFKA_MC_IP_ADDR}:2181
-    KAFKA_HOME=~/softwares/kafka
 
-    TOPIC=test-topic-1 &&  ${KAFKA_HOME}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --partitions 1  --replication-factor 1 --topic $TOPIC
-    TOPIC=test-topic-2 &&  ${KAFKA_HOME}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --partitions 3  --replication-factor 1 --topic $TOPIC
 
-    TOPIC=test-topic-1 && ${KAFKA_HOME}/bin/kafka-topics.sh --describe --zookeeper ${ZK_LIST} --topic $TOPIC
-    TOPIC=test-topic-2 && ${KAFKA_HOME}/bin/kafka-topics.sh --describe --zookeeper ${ZK_LIST} --topic $TOPIC
+    TOPIC=test-topic-1 &&  docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic $TOPIC
+    TOPIC=test-topic-2 &&  docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 3 --topic $TOPIC
+
+    TOPIC=test-topic-1 && docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic $TOPIC
+    TOPIC=test-topic-2 && docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic $TOPIC
 }
 
 
