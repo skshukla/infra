@@ -24,11 +24,9 @@ alias t2='cd ~/tmp/t2'
 alias t3='cd ~/tmp/t3'
 alias t4='cd ~/tmp/t4'
 alias t5='cd ~/tmp/t5'
-alias g='cd $GOPAH/src/repo2.deskera.com/crm-dev && pwd && ll'
 alias gcdi='git checkout dev-initial'
 alias gpdi='git pull origin dev-initial'
 alias grdi='git reset --hard origin/dev-initial'
-alias ggc='GOSUMDB=off go get -u repo2.deskera.com/crm-dev/common'
 
 
 # GIT shortcuts
