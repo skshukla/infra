@@ -52,7 +52,7 @@ export MAVEN_HOME=/Users/sachin/softwares/maven
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home
 #export JAVA_HOME=/Users/sachin/softwares/jdk-11.0.4.jdk/Contents/Home
 
-export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:${GRADLE_HOME}/bin:~/work/ws_sachin/VagrantProj/projects/001_infra/util-scripts:$KAFKA_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:${GRADLE_HOME}/bin:~/work/skshukla_ws/infra/util-scripts:$KAFKA_HOME/bin:$PATH
 
 
 # Setting PATH for Python 2.7
