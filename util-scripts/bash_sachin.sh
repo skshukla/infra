@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 
+BASEDIR=$(dirname "$0")
 
 
 # Bash My AWS
 export PATH="$PATH:$HOME/.bash-my-aws/bin"
 source ~/.bash-my-aws/aliases
 
-source ./vm-util.sh
+source $BASEDIR/vm-util.sh
 
 
 #echo 'Entering .bash_profile....'

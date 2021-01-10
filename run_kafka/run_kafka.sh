@@ -19,9 +19,15 @@ function createSampleRecords() {
 
     TOPIC=test-topic-1 &&  docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic $TOPIC
     TOPIC=test-topic-2 &&  docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 3 --topic $TOPIC
+    TOPIC=my-compacted-topic-01 &&  docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic $TOPIC \
+      --config "cleanup.policy=compact" --config "delete.retention.ms=1000"  --config "segment.ms=1000" --config "min.cleanable.dirty.ratio=0.001"
+
+
 
     TOPIC=test-topic-1 && docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic $TOPIC
     TOPIC=test-topic-2 && docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic $TOPIC
+    TOPIC=my-compacted-topic-01 && docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic $TOPIC
+
 }
 
 
@@ -49,15 +55,18 @@ echo ''
 
 echo '
 =============>
-docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 3 --partitions 3 --topic mytopic
+TOPIC=mytopic
+docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 3 --partitions 3 --topic $TOPIC
 
-docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic mytopic
+docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic $TOPIC
 
 docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --list --zookeeper zookeeper:2181
 
-docker exec -it run_kafka_kafka-server1_1 kafka-console-producer.sh --broker-list kafka-server1:9092 --topic mytopic
+docker exec -it run_kafka_kafka-server1_1 kafka-console-producer.sh --broker-list kafka-server1:9092 --topic $TOPIC
 
-docker exec -it run_kafka_kafka-server1_1 kafka-console-consumer.sh --bootstrap-server kafka-server1:9092 --topic mytopic --from-beginning
+docker exec -it run_kafka_kafka-server1_1 kafka-console-producer.sh --broker-list kafka-server1:9092 --topic $TOPIC --property parse.key=true --property key.separator=: ### To send key also
+
+docker exec -it run_kafka_kafka-server1_1 kafka-console-consumer.sh --bootstrap-server kafka-server1:9092 --topic $TOPIC --property  print.key=true --property key.separator=: --from-beginning
 <====
 '
 
