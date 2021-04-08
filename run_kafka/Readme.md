@@ -2,8 +2,22 @@ Running the *run_kafka.sh* shell script file would bring up 3 node kafka cluster
 
 
 
+###### Add Partitions (Reduce is not possible).
+```bash
+docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 2 --partitions 3 --topic test-topic-02
+docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic test-topic-02
+docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --zookeeper zookeeper:2181 --alter --topic test-topic-02 --partitions 16
+```
+Now the topic can again be described to check increased partitions, and if its decreased again, the error similar to below is printed.
 
+```
+WARNING: If partitions are increased for a topic that has a key, the partition logic or ordering of the messages will be affected
+Error while executing topic command : The number of partitions for a topic can only be increased. Topic test-topic-02 currently has 16 partitions, 8 would not be an increase.
+[2021-04-08 16:26:39,112] ERROR org.apache.kafka.common.errors.InvalidPartitionsException: The number of partitions for a topic can only be increased. Topic test-topic-02 currently has 16 partitions, 8 would not be an increase.
+ (kafka.admin.TopicCommand$)
+ ```
 
+kafka-topics.sh --zookeeper zoo1.example.com:2181/kafka-cluster --alter --topic my-topic --partitions 16
 
 ###### Trigger Preferred-Leader Partition.
 
