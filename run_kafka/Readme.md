@@ -23,7 +23,7 @@ Error while executing topic command : The number of partitions for a topic can o
 docker exec -it run_kafka_kafka-server1_1 kafka-preferred-replica-election.sh --zookeeper zookeeper:2181
 ```
 
-###### Trigger Preferred-Leader Partition.
+###### Trigger ReAssign Topics.
 
 ```bash
 docker exec -it run_kafka_kafka-server1_1 kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 2 --partitions 3 --topic test-topic-03
