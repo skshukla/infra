@@ -17,8 +17,6 @@ Error while executing topic command : The number of partitions for a topic can o
  (kafka.admin.TopicCommand$)
  ```
 
-kafka-topics.sh --zookeeper zoo1.example.com:2181/kafka-cluster --alter --topic my-topic --partitions 16
-
 ###### Trigger Preferred-Leader Partition.
 
 ```shell
