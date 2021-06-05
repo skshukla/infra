@@ -11,7 +11,7 @@ function usage() {
 function get_options() {
     if [[ -z "$1" ]]; then
       echo 'minikube invoked with no option. Chosing the default one {restart}.'
-      export OPTION="restart"
+      export OPTION="usage"
     else
       export OPTION=$1
     fi
@@ -121,7 +121,7 @@ function echo_useful_commands() {
 
 function run_minikube_cluster() {
 
-  if [[ "$1" == "usage" ]]; then
+  if [[ -z "$1" || "$1" == "usage" ]]; then
       usage
       exit
   elif [[ "$1" == "alias" ]]; then

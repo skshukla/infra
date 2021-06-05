@@ -1,0 +1,1 @@
+`curl -L -s https://raw.githubusercontent.com/skshukla/infra/dev/util-scripts/.minikube.sh | bash /dev/stdin usage`
