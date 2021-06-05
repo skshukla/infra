@@ -46,12 +46,12 @@ function run_minikube() {
     elif [[ "$1" == "watch-pods" ]]; then
       echo 'Going 2 watch the pods in minikube cluster....'
       source .minikube_env.sh set
-      .watch_cmd.sh 'kubectl get pods -o wide --all-namespaces --show-labels' 3
+      while clear; do date; /bin/sh -c "kubectl get pods -o wide --all-namespaces --show-labels";sleep 3; done
       exit
     elif [[ "$1" == "watch-infra" ]]; then
       echo 'Going to watch the infra in local machine (not in MiniKube Cluster)....'
       source .minikube_env.sh unset
-      .watch_cmd.sh 'docker ps -a' 3
+      while clear; do date; /bin/sh -c "docker ps -a";sleep 3; done
       exit
     elif [[ "$1" == "clean-start" ]]; then ##  Most of the time clean-start would be needed to start afresh.
       echo 'Clean start is true, cleaning up minikube directories..'
