@@ -8,6 +8,19 @@ function usage() {
   exit
 }
 
+function set_minikube_docker_env_vars() {
+    export KUBECONFIG=~/.minikube/minikube-config
+    eval $(minikube docker-env)
+    minikube update-context
+}
+
+function unset_minikube_docker_env_vars() {
+    unset DOCKER_TLS_VERIFY
+    unset DOCKER_HOST
+    unset DOCKER_CERT_PATH
+    unset KUBECONFIG
+}
+
 function get_options() {
     if [[ -z "$1" ]]; then
       echo 'minikube invoked with no option. Chosing the default one {restart}.'
@@ -45,36 +58,27 @@ function run_minikube() {
       minikube start
     elif [[ "$1" == "watch-pods" ]]; then
       echo 'Going 2 watch the pods in minikube cluster....'
-      source .minikube_env.sh set
+      source set_minikube_docker_env_vars
       while clear; do date; /bin/sh -c "kubectl get pods -o wide --all-namespaces --show-labels";sleep 3; done
       exit
     elif [[ "$1" == "watch-infra" ]]; then
       echo 'Going to watch the infra in local machine (not in MiniKube Cluster)....'
-      source .minikube_env.sh unset
+      source unset_minikube_docker_env_vars
       while clear; do date; /bin/sh -c "docker ps -a";sleep 3; done
       exit
     elif [[ "$1" == "clean-start" ]]; then ##  Most of the time clean-start would be needed to start afresh.
       echo 'Clean start is true, cleaning up minikube directories..'
-#      ${HOME}/work/workspace/ms-run-locally/src/main/scripts/run_infra.sh
       minikube delete
-#      rm -rf /tmp/minikube_tmp_dir && mkdir -p /tmp/minikube_tmp_dir
-#      minikube start --vm-driver=virtualbox --cpus 4 --memory 8192 --mount-string /tmp/minikube_tmp_dir:/data --mount
       minikube start --vm-driver=virtualbox --cpus 4 --memory 8192
     elif [[ "$1" == "force-clean-start" ]]; then
       echo 'Force clean start is true, cleaning up minikube directories..including the iso image files.'
-#      ${HOME}/work/workspace/ms-run-locally/src/main/scripts/run_infra.sh
       minikube delete
       rm -rf ~/.kube && rm -rf .minikube
-#      rm -rf /tmp/minikube_tmp_dir && mkdir -p /tmp/minikube_tmp_dir
       minikube start --vm-driver=virtualbox --cpus 4 --memory 8192
     fi
 
-    source .minikube_env.sh set
-
-#    update_host_entries
+    source set_minikube_docker_env_vars
     pull_base_images
-
-#    ${HOME}/work/workspace/ms-run-locally/src/main/scripts/run_all_apps.sh
 }
 
 function update_host_entries() {
