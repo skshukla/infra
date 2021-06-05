@@ -8,3 +8,26 @@ Checkout and execute the top level shell script to bring up and follow logs how 
 
     
 ##### https://youtu.be/P891O2Cj9Ms
+
+
+
+ElasticSearch 
+---
+`git clone https://github.com/skshukla/infra && cd infra && chmod +x ./run_elasticsearch/run_elasticsearch.sh && ./run_elasticsearch/run_elasticsearch.sh`
+
+Kafka 
+---
+`git clone https://github.com/skshukla/infra && cd infra && chmod +x ./run_kafka/run_kafka.sh && ./run_kafka/run_kafka.sh`
+
+Nginx 
+---
+`git clone https://github.com/skshukla/infra && cd infra && chmod +x ./run_nginx/run_nginx.sh && ./run_nginx/run_nginx.sh`
+
+Postgres 
+---
+`git clone https://github.com/skshukla/infra && cd infra && chmod +x ./run_postgres/run_postgres.sh && ./run_postgres/run_postgres.sh`
+
+Redis 
+---
+`git clone https://github.com/skshukla/infra && cd infra && chmod +x ./run_redis/run_redis.sh && ./run_redis/run_redis.sh`
+
