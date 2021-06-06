@@ -75,6 +75,8 @@ function run_minikube() {
       minikube delete
       rm -rf ~/.kube && rm -rf .minikube
       minikube start --vm-driver=virtualbox --cpus 4 --memory 8192
+      minikube addons enable ingress
+      minikube addons enable ingress-dns
     fi
 
     source set_minikube_docker_env_vars
