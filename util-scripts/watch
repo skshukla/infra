@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# usage: watch.sh <your_command> <sleep_duration>
+
+DEFAULT_SLEEP_TIME=4
+
+SLEEP_TIME=$DEFAULT_SLEEP_TIME
+
+if [ $# -eq 0 ]; then
+    echo "No command provided"
+    exit 1
+fi
+
+echo 'Command provided : {'$1'}, Duration Provided : {'$2'}'
+
+if [[ -z "$2" ]]; then
+  echo "Sleep duration not passed, default to {$DEFAULT_SLEEP_TIME} seconds"
+else
+  SLEEP_TIME=$2
+fi
+
+echo "Going to execute command {$1} with sleep duration {$SLEEP_TIME}"
+
+while :;
+  do
+  clear
+  date
+  $1
+  sleep $SLEEP_TIME
+done
