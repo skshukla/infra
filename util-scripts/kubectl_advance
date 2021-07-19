@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+V=`eval "cat <<EOF
+$(<$1)
+EOF
+"`
+
+echo $V

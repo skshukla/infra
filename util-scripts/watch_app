@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+APPS=$1
+SLEEP=$2
+
+CMD="watch \"kubectl get svc,deployments,statefulset,pods,pv,pvc -o wide --show-labels -l app=$APPS\" $2"
+echo $CMD
+/bin/sh -c "$CMD"

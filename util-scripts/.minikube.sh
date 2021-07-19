@@ -75,6 +75,7 @@ function run_minikube() {
       minikube delete
       rm -rf ~/.kube && rm -rf .minikube
       minikube start --vm-driver=virtualbox --cpus 4 --memory 8192
+#      --extra-config=kubelet.CAdvisorPort=4194
       minikube addons enable ingress
       minikube addons enable ingress-dns
     fi

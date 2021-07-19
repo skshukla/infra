@@ -48,12 +48,14 @@ export M2_HOME=$MAVEN_HOME
 
 export KAFKA_HOME=/Users/sachin/softwares/kafka
 export MAVEN_HOME=/Users/sachin/softwares/maven
+export ZK_HOME=/Users/sachin/softwares/zookeeper
+
 
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home
 #export JAVA_HOME=/Users/sachin/softwares/jdk-11.0.4.jdk/Contents/Home
 
-export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:${GRADLE_HOME}/bin:~/work/skshukla_ws/infra/util-scripts:$KAFKA_HOME/bin:$PATH
+export PATH=~/work/ws_skshukla/infra/util-scripts:$JAVA_HOME/bin:$MAVEN_HOME/bin:$ZK_HOME/bin:${GRADLE_HOME}/bin:~/work/skshukla_ws/infra/util-scripts:$KAFKA_HOME/bin:$PATH
 
 
 # Setting PATH for Python 2.7
@@ -73,6 +75,22 @@ export GRADLE_OPTS="-Xms1024m -Xmx2048m"
 export JAVA_OPTS="-Xms1024m -Xmx2048m"
 
 alias .fixIP='sudo bash -c "$(declare -f updateHostFileForCurrentIP); updateHostFileForCurrentIP"'
+
+
+
+
+# Infra Alias
+alias .refreshMinikubeIP='/Users/sachin/work/ws_skshukla/KubernetesSample/scripts/refreshMinikubeIP.sh'
+# --
+alias .kafka='/Users/sachin/work/ws_skshukla/KubernetesSample/kafka/run.sh'
+alias .mongo='/Users/sachin/work/ws_skshukla/KubernetesSample/mongodb/run.sh'
+
+alias .nginx='/Users/sachin/work/ws_skshukla/KubernetesSample/nginx/run.sh && /Users/sachin/work/ws_skshukla/KubernetesSample/app-backend/run.sh && watch_app nginx'
+alias .postgres='/Users/sachin/work/ws_skshukla/KubernetesSample/postgres/run.sh'
+alias .redis='/Users/sachin/work/ws_skshukla/KubernetesSample/redis/run.sh'
+
+alias .zookeeper='/Users/sachin/work/ws_skshukla/KubernetesSample/zookeeper/run.sh'
+
 
 
 
