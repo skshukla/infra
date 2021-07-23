@@ -53,6 +53,7 @@ export ZK_HOME=/Users/sachin/softwares/zookeeper
 
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home
+export JAVA11_HOME=/Users/sachin/softwares/java11/Contents/Home
 #export JAVA_HOME=/Users/sachin/softwares/jdk-11.0.4.jdk/Contents/Home
 
 export PATH=~/work/ws_skshukla/infra/util-scripts:$JAVA_HOME/bin:$MAVEN_HOME/bin:$ZK_HOME/bin:${GRADLE_HOME}/bin:~/work/skshukla_ws/infra/util-scripts:$KAFKA_HOME/bin:$PATH
@@ -65,7 +66,7 @@ export PATH=~/work/ws_skshukla/infra/util-scripts:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
 # Setting PATH for Python 3.7
 # The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/sachin/softwares/bins:${PATH}"
 export PATH
 
 
