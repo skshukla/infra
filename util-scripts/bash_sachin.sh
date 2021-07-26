@@ -86,11 +86,12 @@ alias .refreshMinikubeIP='/Users/sachin/work/ws_skshukla/KubernetesSample/script
 alias .kafka='/Users/sachin/work/ws_skshukla/KubernetesSample/kafka/run.sh'
 alias .mongo='/Users/sachin/work/ws_skshukla/KubernetesSample/mongodb/run.sh'
 
-alias .nginx='/Users/sachin/work/ws_skshukla/KubernetesSample/nginx/run.sh && /Users/sachin/work/ws_skshukla/KubernetesSample/app-backend/run.sh && watch_app nginx'
+alias .nginx='/Users/sachin/work/ws_skshukla/KubernetesSample/nginx/run.sh && watch_app nginx'
 alias .postgres='/Users/sachin/work/ws_skshukla/KubernetesSample/postgres/run.sh'
 alias .redis='/Users/sachin/work/ws_skshukla/KubernetesSample/redis/run.sh'
 
 alias .zookeeper='/Users/sachin/work/ws_skshukla/KubernetesSample/zookeeper/run.sh'
+alias .kafka-stream='/Users/sachin/work/ws_skshukla/KafkaStreamProject/scripts/run.sh'
 
 
 
