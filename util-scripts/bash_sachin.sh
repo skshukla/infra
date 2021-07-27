@@ -91,7 +91,7 @@ alias .postgres='/Users/sachin/work/ws_skshukla/KubernetesSample/postgres/run.sh
 alias .redis='/Users/sachin/work/ws_skshukla/KubernetesSample/redis/run.sh'
 
 alias .zookeeper='/Users/sachin/work/ws_skshukla/KubernetesSample/zookeeper/run.sh'
-alias .kafka-stream='/Users/sachin/work/ws_skshukla/KafkaStreamProject/scripts/run.sh'
+alias .ks='/Users/sachin/work/ws_skshukla/KafkaStreamProject/scripts/kafka-stream.sh -s vm-minikube:30092,vm-minikube:30093,vm-minikube:30094'
 
 
 
