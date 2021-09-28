@@ -16,10 +16,14 @@ alias c='clear'
 alias ll=' ls -ltra'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
+
+# Maven aliases
 alias mcg='mvn clean generate-sources -DskipTests'
 alias mci='mvn clean install -DskipTests'
 alias mcp='mvn clean package -DskipTests'
 alias mct='mvn clean test'
+alias mdr='mvn dependency:resolve'
+alias mdt='mvn dependency:tree'
 
 
 alias t1='cd ~/tmp/t1'
