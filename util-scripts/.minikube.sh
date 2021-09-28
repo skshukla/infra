@@ -74,10 +74,11 @@ function run_minikube() {
       echo 'Force clean start is true, cleaning up minikube directories..including the iso image files.'
       minikube delete
       rm -rf ~/.kube && rm -rf .minikube
-      minikube start --vm-driver=virtualbox --cpus 4 --memory 8192
+      minikube start --vm-driver=virtualbox --cpus 4 --memory 12288
 #      --extra-config=kubelet.CAdvisorPort=4194
       minikube addons enable ingress
       minikube addons enable ingress-dns
+      minikube addons enable metrics-server
     fi
 
     source set_minikube_docker_env_vars
