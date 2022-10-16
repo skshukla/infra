@@ -59,7 +59,7 @@ export ZK_HOME=/Users/sachin/softwares/zookeeper
 
 
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home
+export JAVA_HOME=/Users/sachin/softwares/java/Contents/Home
 #export JAVA11_HOME=/Users/sachin/softwares/java11/Contents/Home
 #export JAVA_HOME=/Users/sachin/softwares/jdk-11.0.4.jdk/Contents/Home
 
@@ -88,24 +88,26 @@ alias .fixIP='sudo bash -c "$(declare -f updateHostFileForCurrentIP); updateHost
 
 
 
+alias .encryption="cd /Users/sachin/work/workspaces/ws_sks336/SachinWSNew/PasswordEncryption/target && java -cp '.:PasswordEncryption-1.0.0.jar:dependency/*' sachin.EncryptionUtil /Users/sachin/work/keys"
+
 # Infra Alias
 alias k='kubectl'
 alias kn='kubectl -n $NS'
-export KUBECONFIG=/Users/sachin/.minikube/minikube-config
-alias .refreshMinikubeIP='/Users/sachin/workspace/skshukla/KubernetesSample/scripts/refreshMinikubeIP.sh'
+export KUBECONFIG=/Users/sachin/.kube/config
+alias .refreshMinikubeIP='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/scripts/refreshMinikubeIP.sh'
 # --
-alias .kafka='/Users/sachin/workspace/skshukla/KubernetesSample/kafka/run.sh'
-alias .mongo='/Users/sachin/workspace/skshukla/KubernetesSample/mongodb/run.sh'
+alias .kafka='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/kafka/run.sh'
+alias .mongo='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/mongodb/run.sh'
 
-alias .nginx='/Users/sachin/workspace/skshukla/KubernetesSample/nginx/run.sh'
-alias .postgres='/Users/sachin/workspace/skshukla/KubernetesSample/postgres/run.sh'
-alias .redis='/Users/sachin/workspace/skshukla/KubernetesSample/redis/run.sh'
+alias .nginx='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/nginx/run.sh'
+alias .postgres='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/postgres/run.sh'
+alias .redis='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/redis/run.sh'
 
-alias .zookeeper='/Users/sachin/workspace/skshukla/KubernetesSample/zookeeper/run.sh'
+alias .zookeeper='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/zookeeper/run.sh'
 alias .ks='/Users/sachin/workspace/skshukla/KafkaStreamProject/scripts/kafka-stream.sh -s vm-minikube:30092,vm-minikube:30093,vm-minikube:30094'
 
-
-
+alias .kc='/Users/sachin/work/workspaces/ws_skshukla/KubernetesSample/kafka-connect/run.sh'
+alias .vm-reboot='/Users/sachin/work/workspaces/ws_sks336/VagrantProj/projects/250_run_kubernetes_cluster/scripts/reboot.sh'
 
 
 
