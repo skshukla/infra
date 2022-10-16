@@ -1,0 +1,42 @@
+version: '2'
+
+networks:
+  kafka-net:
+    driver: bridge
+
+services:
+
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    networks:
+      - kafka-net
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka-server:
+    volumes:
+      - /Users/sachin/work/workspaces/ws_skshukla/infra/run_kafka/.tmp/ssl:/bitnami/kafka/config/certs
+    image: 'bitnami/kafka:latest'
+    networks:
+      - kafka-net
+    ports:
+      - '39092:9092'
+      - '39093:9093'
+    environment:
+      - KAFKA_CFG_LISTENERS=EXTERNAL://:9092,EXTERNAL_SSL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=EXTERNAL://my-local-machine.com:39092,EXTERNAL_SSL://my-local-machine.com:39093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL_SSL:SSL
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=EXTERNAL
+      - KAFKA_CFG_SSL_KEYSTORE_LOCATION=/bitnami/kafka/config/certs/kafka.keystore.jks
+      - KAFKA_CFG_SSL_KEYSTORE_PASSWORD=123456
+      - KAFKA_CFG_SSL_TRUSTSTORE_LOCATION=/bitnami/kafka/config/certs/kafka.truststore.jks
+      - KAFKA_CFG_SSL_KEY_PASSWORD=123456
+      - KAFKA_CFG_SSL_TRUSTSTORE_PASSWORD=123456
+      - KAFKA_CFG_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM=
+      - KAFKA_CFG_SSL_CLIENT_AUTH=none
+    depends_on:
+      - zookeeper
